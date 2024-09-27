@@ -16,10 +16,10 @@ jobs:
         run: |
           echo "Deploying to production"
           # Your deployment script here
-      - name: Upload Artifact
-        run: |
-          mkdir -p ~/.ssh
-          ssh-keyscan ${{ vars.SSH_HOST }} >> ~/.ssh/known_hosts
-          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          ssh ${{ vars.SSH_USER }}@${{ vars.SSH_HOST }} "echo 'Hello, world!' > artifact.txt"
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ vars.SSH_HOST }}
+          username: ${{ vars.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: echo "Hello, From appleboy/ssh-action@v1.0.3!" > artifact.txt
