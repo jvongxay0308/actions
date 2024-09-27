@@ -18,4 +18,5 @@ jobs:
           # Your deployment script here
       - name: Upload Artifact
         run: |
+          ssh-keyscan ${{ vars.SSH_HOST }} >> ~/.ssh/known_hosts
           ssh ${{ vars.SSH_USER }}@${{ vars.SSH_HOST }} "echo 'Hello, world!' > artifact.txt"
