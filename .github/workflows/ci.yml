@@ -21,4 +21,5 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan ${{ vars.SSH_HOST }} >> ~/.ssh/known_hosts
           echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
           ssh ${{ vars.SSH_USER }}@${{ vars.SSH_HOST }} "echo 'Hello, world!' > artifact.txt"
