@@ -11,4 +11,4 @@ jobs:
   call_ci:
     uses: ./.github/workflows/ci.yml
     with:
-      file: x.txt
+      file: x/x.txt
