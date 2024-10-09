@@ -1,11 +1,11 @@
-name: Y.txt
+name: Y
 
 on:
   push:
     branches:
       - main
     paths:
-      - "y.txt"
+      - y/*.txt
 
 jobs:
   call_ci:

@@ -16,4 +16,5 @@ jobs:
         uses: actions/checkout@v4
       - name: Run a script
         run: |
-          echo "Working directory: ${{ inputs.file }}"
+          echo "Processing ${{ inputs.file }}"
+          cat ${{ inputs.file }}
