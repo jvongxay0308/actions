@@ -1,25 +1,19 @@
-name: Deploy Production
+name: CI
 
 on:
-  push:
-    branches:
-      - main
+  workflow_call: # Triggered by the workflow_dispatch event
+    inputs:
+      file:
+        required: true
+        type: string
+        description: "File to be processed"
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    environment: prod
+  ci:
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Deploy
+      - name: Run a script
         run: |
-          echo "Deploying to production"
-          # Your deployment script here
-      - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ vars.SSH_HOST }}
-          username: ${{ vars.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          script: echo "Hello, From appleboy/ssh-action@v1.0.3!" > artifact.txt
+          echo "Working directory: ${{ inputs.file }}"
