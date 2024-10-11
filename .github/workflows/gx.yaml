@@ -18,4 +18,5 @@ jobs:
           username: ${{ github.actor }}
           key: ${{ secrets.SSH_KEY }}
           script: |
+            cd ~/gx
             sed -i 's/ghcr.io\/${{ github.repository_owner }}\/${{ github.event.repository.name }}\/oneplay:.*/ghcr.io\/${{ github.repository_owner }}\/${{ github.event.repository.name }}\/oneplay:${{ github.sha }}/' docker-compose.yml
